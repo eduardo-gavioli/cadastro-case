@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Table(name = "cadastro")
 @Entity
-public class Cadastro extends RepresentationModel<Cadastro> implements Serializable {
+public class CadastroModel extends RepresentationModel<CadastroModel> implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
