@@ -8,7 +8,7 @@ services:
       - db
       - rabbitmq
     env_file:
-      - .env
+      - docker/.env
     ports:
       - "8080:8080"
     networks:
@@ -18,7 +18,7 @@ services:
     image: postgres:15
     container_name: cadastro-db
     env_file:
-      - .env
+      - docker/.env
     ports:
       - "5432:5432"
     networks:
@@ -30,7 +30,7 @@ services:
     image: rabbitmq:3-management
     container_name: cadastro-rabbitmq
     env_file:
-      - .env
+      - docker/.env
     ports:
       - "5672:5672"
       - "15672:15672"  # Interface de gerenciamento
