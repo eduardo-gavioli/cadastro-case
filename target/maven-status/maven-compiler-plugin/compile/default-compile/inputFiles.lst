@@ -1,8 +1,7 @@
 F:\itau-case\case\src\main\java\com\cadatro\demo\application\controller\CadastroController.java
 F:\itau-case\case\src\main\java\com\cadatro\demo\application\service\CadastroService.java
 F:\itau-case\case\src\main\java\com\cadatro\demo\CaseApplication.java
-F:\itau-case\case\src\main\java\com\cadatro\demo\config\AWSConfig.java
 F:\itau-case\case\src\main\java\com\cadatro\demo\config\CorsConfig.java
-F:\itau-case\case\src\main\java\com\cadatro\demo\domain\dto\CadastroDTO.java
-F:\itau-case\case\src\main\java\com\cadatro\demo\domain\entity\Cadastro.java
+F:\itau-case\case\src\main\java\com\cadatro\demo\domain\dto\CadastroRecordDto.java
+F:\itau-case\case\src\main\java\com\cadatro\demo\domain\entity\CadastroModel.java
 F:\itau-case\case\src\main\java\com\cadatro\demo\infrastructure\repository\CadastroRepository.java
