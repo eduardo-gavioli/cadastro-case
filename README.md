@@ -41,7 +41,7 @@ cd cadastro-api
 
 
 2️⃣ Configurar variáveis de ambiente<br>
-Edite o arquivo application.yml ou crie um .env:<br>
+Edite o arquivo application.properties ou crie um .env:<br>
 DATABASE_URL=jdbc:postgresql://localhost:5432/cadastro<br>
 RABBITMQ_URL=amqp://guest:guest@localhost<br>
 
