@@ -5,15 +5,15 @@
 ✨ Funcionalidades
 
 ✅ Cadastro de usuários com nome, sobrenome, idade e país<br>
-[] Envio de notificação assíncrona via RabbitMQ<br>
+[ ] Envio de notificação assíncrona via RabbitMQ<br>
 ✅ Consulta de um cadastro por ID<br>
 ✅ Listagem de todos os cadastros<br>
 ✅ Atualização parcial do cadastro<br>
 ✅ Exclusão de um cadastro<br>
-[] Exposição da API via API Gateway<br>
-[] Observabilidade com Grafana, Prometheus e Loki<br>
-[] Deploy automatizado usando Docker e Kubernetes<br>
-[] Infraestrutura gerenciada via Terraform na AWS<br>
+[ ] Exposição da API via API Gateway<br>
+[ ] Observabilidade com Grafana, Prometheus e Loki<br>
+[ ] Deploy automatizado usando Docker e Kubernetes<br>
+[ ] Infraestrutura gerenciada via Terraform na AWS<br>
 
 🚀 Tecnologias Utilizadas
 - Spring Boot (Framework principal)
