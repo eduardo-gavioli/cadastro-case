@@ -108,3 +108,15 @@ terraform apply<br>
 Isso criará RDS (PostgreSQL), API Gateway, RabbitMQ e Kubernetes (EKS) na AWS.
 
 
+Se precisar gerar a imagem docker e subir para o docker hub
+Ir na pasta principal da aplicação rode
+.\mvnw install 
+
+Após, rode para gerar a imagem localmente (esta imagem que será executada na aws pelo arquiv user_data.sh dentro da pasta infra)
+docker build . -t userDockerHub/public-api:latest
+
+para enviar a imagem para o dockerhub, execute
+docker login
+
+para verificar se a imagem está funcionando ou não
+docker run -p 8080:8080 edumapfre/public-api:latest
