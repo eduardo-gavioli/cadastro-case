@@ -1,19 +1,15 @@
-// Esta variável é para definir a
-// região AWS onde tudo será
-// criado
+// região AWS onde tudo será criado
 variable "aws_region" {
   default = "us-east-1"
 }
 
-// Esta variável é para definir o
 // bloco CIDR para a VPC
 variable "vpc_cidr_block" {
   description = "CIDR block for VPC"
   type        = string
-  default     = "10.0.0.0/16"
+  default     = "0.0.0.0/0"
 }
 
-// Esta variável contém o
 // número de subnets públicas e privadas
 variable "subnet_count" {
   description = "Number of subnets"
@@ -24,8 +20,7 @@ variable "subnet_count" {
   }
 }
 
-// Esta variável contém as configurações
-// para as instâncias EC2 e RDS
+// configurações para as instâncias EC2 e RDS
 variable "settings" {
   description = "Configuration settings"
   type        = map(any)
@@ -45,10 +40,7 @@ variable "settings" {
   }
 }
 
-// Esta variável contém os blocos CIDR para
-// a subnet pública. Incluí apenas 4
-// para este cadastro, mas se você precisar de mais
-// você deve adicioná-los aqui
+// Blocos CIDR para a subnet pública.
 variable "public_subnet_cidr_blocks" {
   description = "Available CIDR blocks for public subnets"
   type        = list(string)
@@ -60,10 +52,7 @@ variable "public_subnet_cidr_blocks" {
   ]
 }
 
-// Esta variável contém os blocos CIDR para
-// a subnet privada. Incluí apenas 4
-// para este exemplo, mas se você precisar de mais
-// você deve adicioná-los aqui
+// Blocos CIDR para a subnet privada.
 variable "private_subnet_cidr_blocks" {
   description = "Available CIDR blocks for private subnets"
   type        = list(string)

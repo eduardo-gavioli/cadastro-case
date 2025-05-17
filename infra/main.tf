@@ -51,11 +51,9 @@ resource "aws_vpc" "cadastro_vpc" {
   }
 }
 
-// Crie um internet gateway chamado "cadastro_igw"
-// e anexe à VPC "cadastro_vpc"
+// Crie um internet gateway chamado "cadastro_igw" e anexe à VPC "cadastro_vpc"
 resource "aws_internet_gateway" "cadastro_igw" {
-  // Aqui estamos anexando o IGW à
-  // VPC cadastro_vpc
+  // Aqui estamos anexando o IGW à VPC cadastro_vpc
   vpc_id = aws_vpc.cadastro_vpc.id
 
   // Estamos marcando o IGW com o nome cadastro_igw
@@ -285,7 +283,7 @@ resource "aws_db_instance" "cadastro_database" {
   engine_version         = var.settings.database.engine_version
 
   // O tipo de instância para o DB. Definido pela variável
-  // settings.database.instance_class, que está como "db.t2.micro"
+  // settings.database.instance_class, que está como "db.t3.micro"
   instance_class         = var.settings.database.instance_class
 
   // Este é o nome do banco de dados. Definido pela variável

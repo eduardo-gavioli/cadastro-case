@@ -112,6 +112,8 @@ Se precisar gerar a imagem docker e subir para o docker hub
 Ir na pasta principal da aplicação rode
 .\mvnw install 
 
+Certifique-se que o docker esteja iniciado em sua maquina
+
 Após, rode para gerar a imagem localmente (esta imagem que será executada na aws pelo arquiv user_data.sh dentro da pasta infra)
 docker build . -t userDockerHub/public-api:latest
 
