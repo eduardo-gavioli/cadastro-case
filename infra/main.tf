@@ -194,7 +194,7 @@ resource "aws_security_group" "cadastro_web_sg" {
   // criar uma regra de entrada que permite todo o tráfego
   // pela porta TCP 80.
   ingress {
-    description = "Permitir todo o tráfego via HTTP"
+    description = "Permitir todo o trafego via HTTP"
     from_port   = "80"
     to_port     = "80"
     protocol    = "tcp"
@@ -215,7 +215,7 @@ resource "aws_security_group" "cadastro_web_sg" {
   // Esta regra de saída permite todo o tráfego de saída
   // das instâncias EC2
   egress {
-    description = "Permitir todo o tráfego de saída"
+    description = "Permitir todo o trafego de saida"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
@@ -243,11 +243,11 @@ resource "aws_security_group" "cadastro_db_sg" {
   // O quarto e último requisito era "Apenas as instâncias EC2
   // devem poder se comunicar com o RDS." Então vamos criar uma
   // regra de entrada que permite tráfego do security group das EC2
-  // pela porta TCP 3306, que é a porta do MySQL
+  // pela porta TCP 5432, que é a porta do Postgres
   ingress {
-    description     = "Permitir tráfego MySQL apenas do web sg"
-    from_port       = "3306"
-    to_port         = "3306"
+    description     = "Permitir trafego Postgres apenas do web sg"
+    from_port       = "5432"
+    to_port         = "5432"
     protocol        = "tcp"
     security_groups = [aws_security_group.cadastro_web_sg.id]
   }
@@ -277,7 +277,7 @@ resource "aws_db_instance" "cadastro_database" {
   allocated_storage      = var.settings.database.allocated_storage
 
   // O engine que queremos para o banco de dados. Definido pela variável
-  // settings.database.engine, que está como "mysql"
+  // settings.database.engine, que está como "Postgres"
   engine                 = var.settings.database.engine
 
   // A versão do engine do banco de dados. Definida pela variável
@@ -315,17 +315,17 @@ resource "aws_db_instance" "cadastro_database" {
 }
 
 // Crie um key pair chamado "cadastro_kp"
-resource "aws_key_pair" "cadastro_kp" {
-  // Dê um nome ao key pair
-  key_name   = "cadastro_kp"
-
-  // Este será o public key do nosso
-  // ssh key. O diretório file pega o arquivo
-  // de um caminho específico. Como a chave pública
-  // foi criada no mesmo diretório do main.tf
-  // podemos apenas colocar o nome
-  public_key = file("cadastro_kp.pub")
-}
+# resource "aws_key_pair" "cadastro_kp" {
+#   // Dê um nome ao key pair
+#   key_name   = "cadastro_kp"
+#
+#   // Este será o public key do nosso
+#   // ssh key. O diretório file pega o arquivo
+#   // de um caminho específico. Como a chave pública
+#   // foi criada no mesmo diretório do main.tf
+#   // podemos apenas colocar o nome
+#   public_key = file("cadastro_kp.pub")
+# }
 
 // Crie uma instância EC2 chamada "cadastro_web"
 resource "aws_instance" "cadastro_web" {
@@ -350,7 +350,7 @@ resource "aws_instance" "cadastro_web" {
 
   // O key pair para conectar na EC2. Estamos usando o key pair "cadastro_kp"
   // que criamos
-  key_name               = aws_key_pair.cadastro_kp.key_name
+  # key_name               = aws_key_pair.cadastro_kp.key_name
 
   // Os security groups da instância EC2. Aceita uma lista, mas só temos
   // 1 security group para as instâncias EC2.

@@ -31,9 +31,9 @@ variable "settings" {
   type        = map(any)
   default = {
     "database" = {
-      allocated_storage   = 2            // armazenamento em gigabytes
+      allocated_storage   = 10            // armazenamento em gigabytes
       engine              = "postgres"       // tipo do motor
-      instance_class      = "db.t2.micro" // tipo de instância rds
+      instance_class      = "db.t3.micro" // tipo de instância rds
       db_name             = "cadastro"    // nome do banco de dados
       engine_version      = "16.3"
       skip_final_snapshot = true
@@ -79,7 +79,7 @@ variable "private_subnet_cidr_blocks" {
 // é usado ao configurar a regra SSH no
 // grupo de segurança web
 variable "my_ip" {
-  description = "162.120.186.85"
+  description = "201.32.66.156"
   type        = string
   sensitive   = true
 }
