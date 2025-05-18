@@ -2,20 +2,20 @@ version: "3.8"
 
 services:
   api:
-    image: nginx:latest
+    image: edumapfre/public-api:latest
     container_name: cadastro-api
     depends_on:
       - db
-      - rabbitmq
+#      - rabbitmq
     env_file:
       - docker_env/.env
     ports:
-      - "8080:8080"
+      - "8080:8090"
     networks:
       - cadastro-net
 
   db:
-    image: postgres:15
+    image: postgres
     container_name: cadastro-db
     env_file:
       - docker_env/.env
@@ -25,17 +25,17 @@ services:
       - cadastro-net
     volumes:
       - db-data:/var/lib/postgresql/data
-
-  rabbitmq:
-    image: rabbitmq:3-management
-    container_name: cadastro-rabbitmq
-    env_file:
-      - docker_env/.env
-    ports:
-      - "5672:5672"
-      - "15672:15672"  # Interface de gerenciamento
-    networks:
-      - cadastro-net
+#
+#  rabbitmq:
+#    image: rabbitmq:3-management
+#    container_name: cadastro-rabbitmq
+#    env_file:
+#      - docker_env/.env
+#    ports:
+#      - "5672:5672"
+#      - "15672:15672"  # Interface de gerenciamento
+#    networks:
+#      - cadastro-net
 
 networks:
   cadastro-net:

@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 public class CaseApplication {
 	public static void main(String[] args) {
-		Dotenv dotenv = Dotenv.configure().directory("app_env").load();
+		Dotenv dotenv = Dotenv.configure().directory("app_env").ignoreIfMalformed().load();
 		System.setProperty("DB_URL", dotenv.get("DB_URL"));
 		System.setProperty("DB_USER", dotenv.get("DB_USER"));
 		System.setProperty("DB_PASSWORD", dotenv.get("DB_PASSWORD"));

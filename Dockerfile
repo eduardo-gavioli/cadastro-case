@@ -5,7 +5,7 @@ FROM openjdk:21
 WORKDIR /app
 
 # Copiando o arquivo JAR gerado pelo Maven para dentro do container
-COPY target/demo-0.0.1-SNAPSHOT.jar /app/cadastro-api.jar
+COPY target/cadastro-api.jar /app/cadastro-api.jar
 COPY app_env/.env /app/app_env/.env
 COPY docker_env/.env /app/docker_env/.env
 
