@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.UUID;
 
 @Table(name = "cadastro")
-@Entity
+@Entity(name = "cadastro")
 public class CadastroModel extends RepresentationModel<CadastroModel> implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
