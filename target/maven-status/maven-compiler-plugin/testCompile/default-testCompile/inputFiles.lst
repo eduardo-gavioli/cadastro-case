@@ -1,2 +1,5 @@
-F:\itau-case\case\src\test\java\com\cadatro\demo\CaseApplicationTests.java
+F:\itau-case\case\src\test\java\com\cadatro\demo\application\controller\CadastroControllerTest.java
+F:\itau-case\case\src\test\java\com\cadatro\demo\application\service\CadastroServiceTest.java
+F:\itau-case\case\src\test\java\com\cadatro\demo\CaseApplicationTest.java
+F:\itau-case\case\src\test\java\com\cadatro\demo\config\CorsConfigTest.java
 F:\itau-case\case\src\test\java\com\cadatro\demo\infrastructure\repository\CadastroRepositoryTest.java
