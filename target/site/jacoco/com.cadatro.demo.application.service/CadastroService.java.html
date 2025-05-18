@@ -1,55 +1,66 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CadastroService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">api</a> &gt; <a href="index.source.html" class="el_package">com.cadatro.demo.application.service</a> &gt; <span class="el_source">CadastroService.java</span></div><h1>CadastroService.java</h1><pre class="source lang-java linenums">package com.cadatro.demo.application.service;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CadastroService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">cadastro</a> &gt; <a href="index.source.html" class="el_package">com.cadatro.demo.application.service</a> &gt; <span class="el_source">CadastroService.java</span></div><h1>CadastroService.java</h1><pre class="source lang-java linenums">package com.cadatro.demo.application.service;
 
-import com.cadatro.demo.domain.dto.CadastroDTO;
-import com.cadatro.demo.domain.entity.Cadastro;
+import com.cadatro.demo.application.controller.CadastroController;
+import com.cadatro.demo.domain.dto.CadastroRecordDto;
+import com.cadatro.demo.domain.entity.CadastroModel;
 import com.cadatro.demo.infrastructure.repository.CadastroRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 @Service
-@Slf4j
+<span class="fc" id="L23">@Slf4j</span>
 @RequiredArgsConstructor
-<span class="fc" id="L18">public class CadastroService {</span>
+public class CadastroService {
 
     @Autowired
     private  CadastroRepository cadastroRepository;
-//    public Cadastro salvarCadastro(CadastroDTO cadastroDTO) {
-//        Cadastro cadastro = new Cadastro();
-//        cadastro.setNome(cadastroDTO.getNome());
-//        cadastro.setSobrenome(cadastroDTO.getSobrenome());
-//        cadastro.setIdade(cadastroDTO.getIdade());
-//        cadastro.setPais(cadastroDTO.getPais());
-//
-////        return cadastroRepository.save(cadastro);
-//        return  null;
-//    }
-
-    public Cadastro buscarCadastro(Long id) {
-<span class="nc" id="L34">        return cadastroRepository.findById(id).orElse(null);</span>
+    public CadastroModel saveRegister(CadastroModel cadastroModelDTO) {
+<span class="fc" id="L30">        var register=  cadastroRepository.save(cadastroModelDTO);</span>
+<span class="fc" id="L31">        UUID id = register.getId();</span>
+<span class="fc" id="L32">        register.add(linkTo(methodOn(CadastroController.class).getOneRegister(id)).withSelfRel());</span>
+<span class="fc" id="L33">        return register;</span>
     }
 
-    public List&lt;Cadastro&gt; listarCadastros() {
-<span class="nc" id="L38">        return cadastroRepository.findAll();</span>
+    public Optional&lt;CadastroModel&gt; searchRegister(UUID id) {
+<span class="fc" id="L37">        return cadastroRepository.findById(id);</span>
     }
 
-//    public Cadastro atualizarCadastro(UUID id, CadastroDTO novosDados) {
-//        Optional&lt;Cadastro&gt; cadastroExistente = cadastroRepository.findById(id);
-//        if (cadastroExistente.isPresent()) {
-//            Cadastro cadastro = cadastroExistente.get();
-//            cadastro.setNome(novosDados.getNome());
-//            return cadastroRepository.save(cadastro);
-//        }
-//        return null;
-//    }
+    public List&lt;CadastroModel&gt; listRegisters() {
+<span class="fc" id="L41">        var registerList =  cadastroRepository.findAll();</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        if (!registerList.isEmpty()) {</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">            for (CadastroModel register : registerList){</span>
+<span class="fc" id="L44">                UUID id = register.getId();</span>
+<span class="fc" id="L45">                register.add(linkTo(methodOn(CadastroController.class).getOneRegister(id)).withSelfRel());</span>
+<span class="fc" id="L46">            }</span>
+        }
+<span class="fc" id="L48">        return  registerList;</span>
+    }
 
-    public void excluirCadastro(Long id) {
-<span class="nc" id="L52">        cadastroRepository.deleteById(id);</span>
-<span class="nc" id="L53">    }</span>
+    public Optional&lt;CadastroModel&gt; updateRegister(UUID id, CadastroRecordDto cadastroRecordDto) {
+<span class="fc" id="L52">        Optional&lt;CadastroModel&gt; register = cadastroRepository.findById(id);</span>
+<span class="fc bfc" id="L53" title="All 2 branches covered.">        if(register.isEmpty())</span>
+        {
+<span class="fc" id="L55">            return Optional.empty();</span>
+        }
+<span class="fc" id="L57">        var cadastroModel = register.get();</span>
+<span class="fc" id="L58">        BeanUtils.copyProperties(cadastroRecordDto,cadastroModel);</span>
+<span class="fc" id="L59">        return Optional.of(cadastroRepository.save(cadastroModel));</span>
+    }
+
+    public void deleteRegister(UUID id) {
+<span class="fc" id="L63">        cadastroRepository.deleteById(id);</span>
+<span class="fc" id="L64">    }</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

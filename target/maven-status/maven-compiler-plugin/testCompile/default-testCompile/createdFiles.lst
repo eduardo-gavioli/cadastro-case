@@ -1,0 +1,4 @@
+com\cadatro\demo\infrastructure\repository\CadastroRepositoryTest.class
+com\cadatro\demo\config\CorsConfigTest.class
+com\cadatro\demo\application\controller\CadastroControllerTest.class
+com\cadatro\demo\application\service\CadastroServiceTest.class

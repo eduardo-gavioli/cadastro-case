@@ -1,5 +1,7 @@
 com\cadatro\demo\infrastructure\repository\CadastroRepository.class
 com\cadatro\demo\application\service\CadastroService.class
+com\cadatro\demo\domain\dto\CadastroRecordDto.class
 com\cadatro\demo\CaseApplication.class
 com\cadatro\demo\application\controller\CadastroController.class
 com\cadatro\demo\config\CorsConfig.class
+com\cadatro\demo\domain\entity\CadastroModel.class
