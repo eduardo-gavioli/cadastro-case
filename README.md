@@ -2,27 +2,18 @@
 
 🚀 Cadastro API é uma API RESTful desenvolvida em Java (Spring Boot) que permite o cadastro de usuários, consulta de registros e envio de notificações por e-mail. A aplicação segue arquitetura hexagonal e é conteinerizada, permitindo fácil escalabilidade.
 
-![Custom VPC architecture for AWS](https://i.postimg.cc/tRFWC9G1/Postgre-SQL.png)✨ Funcionalidades
+![Custom VPC architecture for AWS](imgs/desenho-solucao.png)✨ <br>
 
-✅ Cadastro de usuários com nome, sobrenome, idade e país<br>
-[x] Envio de notificação assíncrona via RabbitMQ<br>
-✅ Consulta de um cadastro por ID<br>
-✅ Listagem de todos os cadastros<br>
-✅ Atualização parcial do cadastro<br>
-✅ Exclusão de um cadastro<br>
-✅ Exposição da API via API Gateway<br>
-[x] Observabilidade com Grafana, Prometheus e Loki<br>
-✅ Deploy automatizado usando Docker e Kubernetes<br>
-✅ Infraestrutura gerenciada via Terraform na AWS<br>
+Funcionalidades
+![img.png](imgs/checklistToDo.png)
 
+<br>
 🚀 Tecnologias Utilizadas
 - Spring Boot (Framework principal)
 - Spring Data JPA (Banco de dados PostgreSQL)
-- Spring AMQP (Mensageria com RabbitMQ)
 - JUnit + Mockito (Testes unitários)
 - Docker (Containerização)
 - Kubernetes (Orquestração)
-- Grafana + Prometheus + Loki (Monitoramento)
 - Terraform (Infraestrutura como código)
 - AWS (Hospedagem e serviços cloud)
 
@@ -34,24 +25,6 @@ Antes de iniciar, certifique-se de ter instalado:
 - Terraform (para provisionamento)
 - PostgreSQL (Banco de dados)
 
-📜 Instalação<br>
-1️⃣ Clone o repositório<br>
-git clone https://github.com/eduardo-gavioli/cadastro-case.git<br>
-cd cadastro-case
-
-
-2️⃣ Configurar variáveis de ambiente<br>
-Edite o arquivo application.properties ou crie um ./app_env/.env:<br>
-DATABASE_URL=jdbc:postgresql://localhost:5432/cadastro<br>
-RABBITMQ_URL=amqp://guest:guest@localhost<br>
-
-
-3️⃣ Executar via Docker<br>
-docker-compose up -d<br>
-
-4️⃣ Verificar logs e métricas<br>
-Acesse o Grafana para visualizar métricas:<br>
-http://localhost:3000
 
 🛠 Endpoints da API
 Cadastro<br>
@@ -73,9 +46,8 @@ POST /cadastros
 Para rodar os testes unitários:
 mvn test
 
-
 ✅ Cobertura de testes esperada: > 90%+ 🛡️
-![img.png](img.png)
+![img.png](imgs/imgCobertura.png)
 
 📦 Estrutura do Projeto<br>
 cadastro-api/<br>
@@ -99,23 +71,38 @@ terraform apply<br>
 Isso criará uma instancia EC2, RDS (PostgreSQL) e API Gateway na AWS.
 
 
-Se precisar gerar a imagem docker e subir para o docker hub
+📜 Instalação<br>
+1️⃣ Clone o repositório<br>
+git clone https://github.com/eduardo-gavioli/cadastro-case.git<br>
+cd cadastro-case<br>
+-   Abra em uma IDE de preferencia<br>
+instale todas as dependencias MAVEN.<br>
+-   Ir na pasta principal da aplicação e executar<br>
+    .\mvnw install<br>
+    mvn clean package install -U<br><br>
 
+-  ⚠️Certifique-se que o docker esteja iniciado em sua maquina
 
-1️⃣ Ir na pasta principal da aplicação rode
-.\mvnw install
-mvn clean package install -U
+2️⃣ Configurar variáveis de ambiente<br>
+Edite o arquivo application.properties e arquivos app_env/.env e docker_env/.env<br>
+- Após, rode para gerar a imagem localmente (esta imagem que será executada na aws pelo arquiv user_data.sh dentro da pasta infra)<br>
+docker build . -t userDockerHub/public-api:latest<br>
 
-Certifique-se que o docker esteja iniciado em sua maquina
-
-2️⃣ Após, rode para gerar a imagem localmente (esta imagem que será executada na aws pelo arquiv user_data.sh dentro da pasta infra)
-docker build . -t userDockerHub/public-api:latest
-
-para subir no docker hub
+⚠️ Para subir no docker hub<br>
 docker push userDockerHub/public-api:latest
 
-3️⃣ para enviar a imagem para o dockerhub, execute
-docker login
+3️⃣ Se informar que você não está logado para enviar a imagem para o dockerhub, execute<br>
+docker login<br>
 
-4️⃣ para verificar se a imagem está funcionando ou não
-docker run -p 8080:8080 userDockerHub/public-api:latest
+4️⃣ para verificar se a imagem está funcionando ou não <br>
+docker run -p 8080:8090 userDockerHub/public-api:latest<br>
+
+⚠️ Estando tudo certo execute para rodar o container local<br>
+docker-compose up -d<br>
+
+-   AWS<br>
+1️⃣  Para criar a infra (IaC) na aws, acesse a pasta infra dentro da raiz do projeto e execute.<br>
+terraform apply
+<br>
+- Após a criação da infra será mostrado no prompt o dns publico, ip publico e url do banco de dados postgres.
+
